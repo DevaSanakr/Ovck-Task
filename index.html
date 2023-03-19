@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OVCK</title>
+    <link rel="shortcut icon" href="./images/sample-logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="./css/bootstrap.min.css" />
+    <link rel="stylesheet" href="./css/bootstrap-icons.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css" />
+    <link rel="stylesheet" href="./css/style.css" />
+</head>
+
+<body class="bg-light">
+    <header class="sticky-top bg-white px-md-3 px-1 py-2 border-bottom">
+        <div class="d-flex flex-wrap align-items-center justify-content-between justify-content-lg-start">
+            <a href="#" class="d-flex align-items-center flex-grow-1 text-dark text-decoration-none">
+                <img src="./images/sample-logo.png" alt="" height="40">
+            </a>
+            <div class="navbar navbar-light">
+                <button class="navbar-toggler d-md-none collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+            <div class="dropdown d-none d-md-block text-end ">
+                <div class="d-block link-dark text-decoration-none dropdown-toggle" id="userMenu"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="./images/default_user.png" alt="mdo" width="40" height="40"
+                        class="rounded-circle p-1 border">
+                </div>
+                <ul class="dropdown-menu text-small p-0" aria-labelledby="userMenu">
+                    <li class="border-bottom"><a class="dropdown-item small d-flex align-items-center" href="#"><i
+                                class="bi bi-person-rolodex me-2 fs-5"></i>Contact
+                            Us</a></li>
+                    <li class="border-bottom"><a class="dropdown-item small d-flex align-items-center" href="#"><i
+                                class="bi bi-info-circle me-2 fs-5"></i>Help/FAQs</a></li>
+                    <li class=""><a class="dropdown-item small d-flex align-items-center" href="./login.html"><i
+                                class="bi bi-door-closed me-2 fs-5"></i>Sign out</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <div class="container-fluid h-100">
+        <div class="row  h-100">
+            <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-white sidebar collapse overflow-auto">
+                <div class="position-sticky">
+                    <h6
+                        class="sidebar-heading d-flex justify-content-between align-items-center px-3 py-2 alert rounded-0 alert-primary mt-2 mb-0 text-uppercase">
+                        <span class="text-dark fw-bold">Dashboard/Reports</span>
+
+                    </h6>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="./index.html">
+                                <span class="bi bi-house-door fw-bold text-primary align-text-center"></span>
+                                <span class="fw-bold text-primary">Dashboard</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <h6
+                        class="sidebar-heading d-flex justify-content-between align-items-center px-3 py-2 alert rounded-0 alert-primary mt-2 mb-0 text-uppercase">
+                        <span class="text-dark fw-bold">Loan Management</span>
+
+                    </h6>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="./users.html">
+                                <span class="bi bi-house-door fw-normal align-text-center"></span>
+                                <span class="fw-normal">Users</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="./application.html">
+                                <span class="bi bi-graph-up-arrow fw-normal align-text-center"></span>
+                                <span class="fw-normal">Applications</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 mt-4 h-100">
+                <div class="card border-0 mb-4">
+                    <div class="card-header bg-white border-0">
+                        <h5 class="mb-0">Dashboard</h5>
+                        <p class="mb-0 small text-muted">know your reports</p>
+                    </div>
+                </div>
+                <div class="row mb-4">
+                    <div class="col-lg-12">
+                        <div class="card shadow-sm h-lg-100 border-0">
+                            <div class="card-header bg-transparent">
+                                <div class="card-title">
+                                    <h5 class="mb-0">Sales</h5>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="col row">
+                                    <div class="col col-md-7" style="height: 300px">
+                                        <canvas id="myChart"></canvas>
+                                    </div>
+                                    <div class="col col-md-5">
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item border-0 text-gray-600">Today <span
+                                                    class="float-end text-success">₹ 3000</span></li>
+                                            <div class="separator separator-dashed"></div>
+                                            <li class="list-group-item border-0 text-gray-600">This Week <span
+                                                    class="float-end text-success">₹ 60,000</span></li>
+                                            <div class="separator separator-dashed"></div>
+                                            <li class="list-group-item border-0 text-gray-600">This Month <span
+                                                    class="float-end text-success">₹ 5,30,000</span></li>
+                                            <div class="separator separator-dashed"></div>
+                                            <li class="list-group-item border-0 text-gray-600">Last Month <span
+                                                    class="float-end text-success">₹ 7,30,000</span></li>
+                                            <div class="separator separator-dashed"></div>
+                                            <li class="list-group-item border-0 text-gray-600">YTD <span
+                                                    class="float-end text-success">₹ 18,30,000</span></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row row-cols-1 row-cols-md-3">
+                    <div class="col">
+                        <div class="card border-0 shadow-sm">
+                            <div class="card-header bg-white">
+                                <h5 class="text-hover-primary mb-0">Users</h5>
+                            </div>
+                            <div class="card-body" style="height: 300px">
+                                <canvas id="Chart_Customers"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card border-0 shadow-sm">
+                            <div class="card-header bg-white">
+                                <h5 class="text-hover-primary mb-0">Applications</h5>
+                            </div>
+                            <div class="card-body" style="height: 300px">
+                                <canvas id="Chart_Bookings"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card mb-5 border-0">
+                            <div class="card-header bg-white">
+                                <h5 class="text-hover-primary mb-0">Orders</h5>
+
+                            </div>
+                            <div class="card-body p-5" style="height: 300px">
+                                <canvas id="Chart_Orders"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+    <script src="./js/bootstrap.bundle.min.js"></script>
+    <script src="./js/jquery-3.6.4.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+
+    <script>
+        var xValues = ["Jul1",
+            "Jul2",
+            "Jul3",
+            "Jul4",
+            "Jul5",
+            "Jul6",
+            "Jul7",
+        ];
+        var yValues = [500, 1000, 500, 2500, 2000, 1500, 2000, 500];
+
+        new Chart("myChart", {
+            type: "line",
+            data: {
+                labels: xValues,
+                datasets: [{
+                    lineTension: 0,
+                    backgroundColor: "rgba(22, 91, 170, 0.23)",
+                    borderColor: "rgba(22, 91, 170, 1)",
+                    data: yValues,
+                    fill: true,
+                    label: "Sales",
+                }]
+            },
+            options: {
+                legend: {
+                    display: true,
+                    position: "bottom",
+                    textAlign: "start"
+                },
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            min: 0,
+                            max: 3000
+                        }
+                    }],
+                },
+                responsive: true,
+                maintainAspectRatio: false
+            }
+        });
+
+        var xValues_Customers = ["Jul1",
+            "Jul2",
+            "Jul3",
+            "Jul4",
+            "Jul5",
+            "Jul6",
+            "Jul7",
+        ];
+        new Chart("Chart_Customers", {
+            type: "line",
+            data: {
+                labels: xValues_Customers,
+                datasets: [{
+                    lineTension: 0,
+                    data: [5, 10, 5, 25, 15, 20, 5],
+                    borderColor: "#165BAA",
+                    backgroundColor: "rgba(22, 91, 170, 0.23)",
+                    fill: true,
+                    label: "Customer Visit",
+                }, {
+                    lineTension: 0,
+                    data: [15, 20, 15, 10, 5, 10, 15],
+                    borderColor: "#F7732F",
+                    backgroundColor: "rgba(247, 115, 47, 0.1)",
+                    fill: true,
+                    label: "New Customers (Store)",
+                }, ]
+            },
+            options: {
+                legend: {
+                    display: true,
+                    position: "bottom",
+                    "labels": {
+                        "fontSize": 10,
+                    }
+                },
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            min: 0,
+                            max: 30
+                        }
+                    }],
+                },
+                responsive: true,
+                maintainAspectRatio: false
+            }
+        });
+
+        var xValues_Bookings = ["Jul1",
+            "Jul2",
+            "Jul3",
+            "Jul4",
+            "Jul5",
+            "Jul6",
+            "Jul7",
+        ];
+        new Chart("Chart_Bookings", {
+            type: "line",
+            data: {
+                labels: xValues_Bookings,
+                datasets: [{
+                    lineTension: 0,
+                    data: [5, 10, 5, 25, 15, 20, 5],
+                    borderColor: "#165BAA",
+                    backgroundColor: "rgba(22, 91, 170, 0.23)",
+                    fill: true,
+                    label: "Bookings (Store)",
+                }, {
+                    lineTension: 0,
+                    data: [15, 20, 15, 10, 5, 10, 15],
+                    borderColor: "#55B9B3",
+                    backgroundColor: "rgba(85, 185, 179, 0.1)",
+                    fill: true,
+                    label: "Bookings (Online)",
+                }, ]
+            },
+            options: {
+                legend: {
+                    display: true,
+                    position: "bottom",
+                    "labels": {
+                        "fontSize": 10,
+                    }
+                },
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            min: 0,
+                            max: 30
+                        }
+                    }],
+                },
+                responsive: true,
+                maintainAspectRatio: false
+            }
+        });
+
+        var xValues_Orders = ["Jul1",
+            "Jul2",
+            "Jul3",
+            "Jul4",
+            "Jul5",
+            "Jul6",
+            "Jul7",
+        ];
+        new Chart("Chart_Orders", {
+            type: "line",
+            data: {
+                labels: xValues_Orders,
+                datasets: [{
+                    lineTension: 0,
+                    data: [5, 10, 5, 25, 15, 20, 5],
+                    borderColor: "#165BAA",
+                    backgroundColor: "rgba(22, 91, 170, 0.23)",
+                    fill: true,
+                    label: "Orders (Store)",
+                }, {
+                    lineTension: 0,
+                    data: [15, 20, 15, 10, 5, 10, 15],
+                    borderColor: "#A155B9",
+                    backgroundColor: "rgba(161, 85, 185, 0.1)",
+                    fill: true,
+                    label: "Orders (Online)",
+                }, ]
+            },
+            options: {
+                legend: {
+                    display: true,
+                    position: "bottom",
+                    "labels": {
+                        "fontSize": 10,
+                    },
+                },
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            min: 0,
+                            max: 30
+                        }
+                    }],
+                },
+                responsive: true,
+                maintainAspectRatio: false
+            }
+        });
+    </script>
+</body>
+
+</html>

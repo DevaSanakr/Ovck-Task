@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" class="h-100">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OVCK</title>
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+</head>
+
+<body class="h-100">
+    <div class="container h-100 d-flex justify-content-center">
+        <div class="align-self-center text-start">
+            <div class="row align-items-stretch">
+                <div class="col align-self-center">
+                    <div class="p-5 shadow h-100">
+                        <p class="fs-4 fw-bold text-uppercase text-center">Login</p>
+                        <p class="d-none text-danger error">Invalid Name or Email</p>
+                        <form method="" action="">
+                            <div class="form-floatin mb-3">
+                                <label class="form-label" for="name">User Name</label>
+                                <input type="text" class="form-control" id="name" placeholder="Enter User Name" />
+                            </div>
+                            <div class="form-floatin mb-3">
+                                <label class="form-label" for="password">Password</label>
+                                <input type="password" class="form-control" id="email" placeholder="Enter Password" />
+                            </div>
+                            <div class="d-grid gap-2">
+                                <input class="btn btn-primary text-uppercase" type="submit" value="login">
+                                <input type="hidden" name="next" value="">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <script src="./js/bootstrap.bundle.min.js"></script>
+    <script src="./js/jquery-3.6.4.min.js"></script>
+    <script>
+        var token = '1251a1de9906a858d1fc697792a5f5a7065a5fe984a159b1d3c3bbea160aa39b';
+        var userData;
+        function getData() {
+            $.ajax({
+                type: "GET",
+                url: "https://api.sfd.interview.ovckd.dev/v1/user/",
+                dataType: 'json',
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader('Authorization', token);
+                },
+                success: function (data) {
+                    userData = data;
+                    console.log(userData)
+                }
+            });
+        }
+        getData();
+
+        $('form').on('submit',function(e){
+            e.preventDefault();
+            var name = $('#name').val();
+            var email = $('#email').val();
+            if(userData['name'] == name && userData['email'] == email){
+                window.location.href = 'index.html';
+            }else{
+                $('.error').removeClass('d-none')
+            }
+        });
+    </script>
+</body>
+
+</html>

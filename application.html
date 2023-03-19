@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OVCK</title>
+    <link rel="shortcut icon" href="./images/sample-logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="./css/bootstrap.min.css" />
+    <link rel="stylesheet" href="./css/bootstrap-icons.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css" />
+    <link rel="stylesheet" href="./css/style.css" />
+</head>
+
+<body class="bg-light">
+    <header class="sticky-top bg-white px-md-3 px-1 py-2 border-bottom">
+        <div class="d-flex flex-wrap align-items-center justify-content-between justify-content-lg-start">
+            <a href="#" class="d-flex align-items-center flex-grow-1 text-dark text-decoration-none">
+                <img src="./images/sample-logo.png" alt="" height="40">
+            </a>
+            <div class="navbar navbar-light">
+                <button class="navbar-toggler d-md-none collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+            <div class="dropdown d-none d-md-block text-end ">
+                <div class="d-block link-dark text-decoration-none dropdown-toggle" id="userMenu"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="./images/default_user.png" alt="mdo" width="40" height="40"
+                        class="rounded-circle p-1 border">
+                </div>
+                <ul class="dropdown-menu text-small p-0" aria-labelledby="userMenu">
+                    <li class="border-bottom"><a class="dropdown-item small d-flex align-items-center" href="#"><i
+                                class="bi bi-person-rolodex me-2 fs-5"></i>Contact
+                            Us</a></li>
+                    <li class="border-bottom"><a class="dropdown-item small d-flex align-items-center" href="#"><i
+                                class="bi bi-info-circle me-2 fs-5"></i>Help/FAQs</a></li>
+                    <li class=""><a class="dropdown-item small d-flex align-items-center" href="./login.html"><i
+                                class="bi bi-door-closed me-2 fs-5"></i>Sign out</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <div class="container-fluid h-100">
+        <div class="row  h-100">
+            <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-white sidebar collapse overflow-auto">
+                <div class="position-sticky">
+                    <h6
+                        class="sidebar-heading d-flex justify-content-between align-items-center px-3 py-2 alert rounded-0 alert-primary mt-2 mb-0 text-uppercase">
+                        <span class="text-dark fw-bold">Dashboard/Reports</span>
+
+                    </h6>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="./index.html">
+                                <span class="bi bi-house-door fw-normal align-text-center"></span>
+                                <span class="fw-normal">Dashboard</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <h6
+                        class="sidebar-heading d-flex justify-content-between align-items-center px-3 py-2 alert rounded-0 alert-primary mt-2 mb-0 text-uppercase">
+                        <span class="text-dark fw-bold">Loan Management</span>
+
+                    </h6>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="./users.html">
+                                <span class="bi bi-house-door align-text-center"></span>
+                                <span class="">Users</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="./application.html">
+                                <span class="bi bi-graph-up-arrow fw-bold text-primary align-text-center"></span>
+                                <span class="fw-bold text-primary">Applications</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 mt-4 h-100">
+                <div class="card border-0 mb-4">
+                    <div class="card-header bg-white border-0">
+                        <h5 class="mb-0">Application</h5>
+                        <p class="mb-0 small text-muted">Loan User Applications</p>
+                    </div>
+                </div>
+                <div class="card shadow-sm border-0">
+                    <div class="card-body">
+                        <table id="example" class="table table-bordered" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>University</th>
+                                    <th>Loan Amount</th>
+                                    <th>Offers</th>
+                                </tr>
+                            </thead>
+                            <tbody id="application"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+    <script src="./js/bootstrap.bundle.min.js"></script>
+    <script src="./js/jquery-3.6.4.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+</body>
+<script>
+    $(document).ready(function () {
+        var token = '1251a1de9906a858d1fc697792a5f5a7065a5fe984a159b1d3c3bbea160aa39b';
+        $.ajax({
+            type: "GET",
+            url: "https://api.sfd.interview.ovckd.dev/v1/user/applications",
+            dataType: 'json',
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader('Authorization', token);
+            },
+            "success": function (data) {
+                console.log(data)
+                var row = '';
+                for (var i = 0; i < data.length; i++) {
+                    row += `
+                        <tr>
+                        <td>${data[i].university}</td>
+                        <td>&#8377 ${data[i].loan_amount}</td>
+                        <td class=''><a href='./offers.html?=${i+1}' class='text-decoration-none btn btn-primary text-capitalize btn-sm'>
+                            <i class='bi bi-eye'></i> view</a></td>
+                        </tr>
+                    `
+                }
+                $('#application').append(row);
+                $('#example').dataTable();
+
+            },
+        });
+    });
+</script>
+
+</html>
